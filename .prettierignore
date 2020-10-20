@@ -1,0 +1,10 @@
+config
+dist
+doc
+node_modules
+public
+scripts
+
+.*
+
+commitlint.config.js
