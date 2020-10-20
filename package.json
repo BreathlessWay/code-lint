@@ -1,0 +1,24 @@
+{
+  "name": "v-t",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BreathlessWay/v-t.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BreathlessWay/v-t/issues"
+  },
+  "homepage": "https://github.com/BreathlessWay/v-t#readme",
+  "devDependencies": {
+    "standard-version": "^9.0.0"
+  }
+}
