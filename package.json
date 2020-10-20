@@ -1,34 +1,39 @@
 {
-  "name": "v-t",
-  "version": "1.7.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "standard-version",
-    "commit": "git add . && cz"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BreathlessWay/v-t.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BreathlessWay/v-t/issues"
-  },
-  "homepage": "https://github.com/BreathlessWay/v-t#readme",
-  "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "commitizen": "^4.2.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "standard-version": "^9.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+    "name": "v-t",
+    "version": "1.8.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "release": "standard-version",
+        "commit": "git add . && cz"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BreathlessWay/v-t.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/BreathlessWay/v-t/issues"
+    },
+    "homepage": "https://github.com/BreathlessWay/v-t#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^11.0.0",
+        "@commitlint/config-conventional": "^11.0.0",
+        "commitizen": "^4.2.1",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^4.3.0",
+        "lint-staged": "^10.4.2",
+        "prettier": "^2.1.2",
+        "pretty-quick": "^3.1.0",
+        "standard-version": "^9.0.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "lint-staged": {}
 }
