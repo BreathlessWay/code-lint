@@ -99,6 +99,7 @@
     - 在每次发版之前通过`npm run release`命令来生成当次发布的内容的changelog文档，并更新版本号，打上tag号符合git flow的main分支必须有tag的规范
 5. [rebase](http://jartto.wang/2018/12/11/git-rebase/)
     - 正常来说一个功能分支只能有一个 feat 的commit，一个bugfix分支只能有一个 fix 的commit
-    - 如果有多个就需要通过 rebase 来合并 commit
+    - 如果有多个就需要通过`git rebase`来合并 commit
     - rebase和merge各有优势合理使用
     - 只要你的分支上需要rebase的所有commits历史还没有被push过，就可以安全地使用rebase来操作。
+    - 通过`git rebase -i`命令来合并commit
