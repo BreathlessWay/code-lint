@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/BreathlessWay/v-t/compare/v1.7.0...v1.9.0) (2020-10-20)
+
+### Features
+
+-   squash!asd ([5b1517c](https://github.com/BreathlessWay/v-t/commit/5b1517c007aedc83994bb751e7983b5cb8ca30be))
+
 ## [1.8.0](https://github.com/BreathlessWay/v-t/compare/v1.7.0...v1.8.0) (2020-10-20)
 
 ### Features
