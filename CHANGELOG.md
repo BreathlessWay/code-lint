@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/BreathlessWay/v-t/compare/v1.5.0...v1.6.0) (2020-10-20)
+
+
+### Features
+
+* docs ([07d56c8](https://github.com/BreathlessWay/v-t/commit/07d56c8f507cbc69eb95391b71962aededa26ce6))
+* first ([eaa4262](https://github.com/BreathlessWay/v-t/commit/eaa4262fd837f83038ef582076f9a5a2d697fb15))
+* second ([e1de336](https://github.com/BreathlessWay/v-t/commit/e1de336af5ad89010527d7b2dc95b0d53fc0945a))
+
 ## [1.5.0](https://github.com/BreathlessWay/v-t/compare/v1.4.0...v1.5.0) (2020-10-20)
 
 
