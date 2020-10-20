@@ -10,5 +10,4 @@
     - 每次发布测试只能从`功能分支feature/<分支名>`/`缺陷修复分支bugfix/<分支名>`合并到`预发布分支release/<分支名>`
     - 发布上线只能从`预发布分支release/<分支名>`合并到main分支
 2. [Rebase](http://jartto.wang/2018/12/11/git-rebase/)
-    
->>>>>>> main
+    - rebase和merge各有优势合理使用
