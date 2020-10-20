@@ -12,7 +12,22 @@
     - 每次发布测试只能从功能分支/缺陷修复分支合并到develop，然后从develop合并到release分支
     - 当release完成之后，将release的代码合并到main和develop分支
     - 使用命令`git flow <subcommand>`，或者使用工具(推荐sourcetree)
-2. [commitlint](https://github.com/conventional-changelog/commitlint) ：校验commit message
+2. [commitizen](https://github.com/commitizen/cz-cli) ：界面化的commit message
+    - 安装使用
+    ```
+    # 安装commitizen
+    npm install commitizen -D
+   
+    # 初始化项目以使用cz-conventional-changelog
+    npx commitizen init cz-conventional-changelog --save-dev --save-exact
+   
+    # 在 package.json 中添加命令
+    "scripts": {
+       "commit": "git add . && cz"
+    }
+    ```
+    - 每次提交时执行`npm run commit`，选择/输入相应信息就行了
+3. [commitlint](https://github.com/conventional-changelog/commitlint) ：校验commit message
     - 在`git commit`时添加符合`type(scope?): subject`格式的信息
     - | type | description |
       | :---- | :---- |
@@ -47,8 +62,43 @@
      }
     }
     ```
-3. [standard-version] ：生成CHANGELOG，管理项目版本
-    - 
-4. [rebase](http://jartto.wang/2018/12/11/git-rebase/)
+   - 在每次commit时都会都commit message进行校验，不通过无法commit
+   - **不推荐**如果要跳过校验可以添加`--no-verify`，`git commit -m 'msg' --no-verify`
+4. [standard-version](https://github.com/conventional-changelog/standard-version) ：生成CHANGELOG，跟新项目版本号，并打tag
+    - 安装使用
+    ```
+    # 安装standard-version
+    npm install standard-version --save-dev
+   
+    # 在 package.json 中添加命令
+    "scripts": {
+        "release": "standard-version"
+    }
+   
+    # 创建生成的changelog规则文件 .versionrc
+    {
+     "types": [
+       {"type":"feat","section":"Features"},
+       {"type":"fix","section":"Bug Fixes"},
+       {"type":"test","section":"Tests", "hidden": true},
+       {"type":"build","section":"Build System", "hidden": true},
+       {"type":"ci","hidden":true}
+     ]
+    }
+   
+    # 可以在 package.json 中添加配置来不打tag，不生成changelog
+    {
+      "standard-version": {
+        "skip": {
+          "changelog": true,
+          "tag": false
+        }
+      }
+    }
+    ```
+    - 在每次发版之前通过`npm run release`命令来生成当次发布的内容的changelog文档，并更新版本号，打上tag号符合git flow的main分支必须有tag的规范
+5. [rebase](http://jartto.wang/2018/12/11/git-rebase/)
+    - 正常来说一个功能分支只能有一个 feat 的commit，一个bugfix分支只能有一个 fix 的commit
+    - 如果有多个就需要通过 rebase 来合并 commit
     - rebase和merge各有优势合理使用
     - 只要你的分支上需要rebase的所有commits历史还没有被push过，就可以安全地使用rebase来操作。
