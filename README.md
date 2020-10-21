@@ -145,9 +145,48 @@
 3. 功能迭代切到 main 分支上`git flow feature start <分支名>`，bugfix 在 main 分支上`git flow bugfix start <分支名>`
 4. `npm run commit`提交代码，选择相关 type，并输入描述信息
 5. 当完成所有功能测试开发，或者 bugfix 之后，通过`git rebase -i`，在 vim 中将除第一个`pick`之外的 commit 都改成`squash`
-6. 将功能分支/bugfix 分支合并到相应测试环境分支，然后创建 release 分支 `git flow release start <分支名>`
-7. 在测试环境分支上测试完成之后，将功能分支/bugfix 分支合并到即将发布的 release 分支
-8. 完成后将 release 合并到 main 分支
-9. `npm run release`为本次发布生成 CHANGELOG，更新版本号，以及打 tag
+6. 合并完 commit 后将第一个 commit message 改成此次迭代的功能，或者缺陷修复
+7. 将功能分支/bugfix 分支合并到相应测试环境分支，然后创建 release 分支 `git flow release start <分支名>`
+8. 在测试环境分支上测试完成之后，将功能分支/bugfix 分支合并到即将发布的 release 分支
+9. 完成后将 release 合并到 main 分支
+10. `npm run release`为本次发布生成 CHANGELOG，更新版本号，以及打 tag
 
 > 基于 husky+prettier+pretty-quick/lint-staged+eslint 的代码规范
+
+1. [prettier](https://prettier.io/docs/en/index.html)
+
+    - 安装使用
+
+    ```
+    # 安装prettire
+    npm install --save-dev prettier
+
+    # 添加配置文件.prettierrc，参考options自行配置
+    {
+      "printWidth": 80,
+      "trailingComma": "es5",
+      "tabWidth": 4,
+      "useTabs": false,
+      "semi": true,
+      "singleQuote": false,
+      "bracketSpacing": true,
+      "arrowParens": "always",
+      "embeddedLanguageFormatting": "auto"
+    }
+    ```
+
+    - 如果使用 [pretty-quick](https://github.com/azz/pretty-quick)
+
+    ```
+    # 安装pretty-quick
+    npm install --save-dev pretty-quick
+
+    # 添加配置到husky
+    "pre-commit": "pretty-quick --staged",
+    ```
+
+    - 每次 commit 时会按照配置规则对代码自动格式化
+
+2. [lint-staged](https://github.com/okonet/lint-staged)
+
+3. [eslint](http://eslint.cn/)
