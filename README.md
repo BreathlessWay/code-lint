@@ -2,17 +2,18 @@
 
 > 基于 git flow+commitizen+husky+commitlint+standard-version+git rebase 的分支及发布管理
 
-1. git flow
+1. 基于 git flow，适应实际开发的工作流
     - [什么是 git flow](https://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html)
     - [如何使用 git flow](https://www.cnblogs.com/cnblogsfans/p/5075073.html)
-    - main(即原 master)分支为受保护分支，开发者只能从其他分支合并，不能在这个分支直接修改，所有 commit 都要有 tag
+    - main(即原 master)分支为受保护分支，开发者只能从其他分支合并，不能在这个分支直接修改，所有 commit 都要有 tag，开发者只能提交 merge request
     - 每次的功能开发/线上缺陷修复，都必须从 main 切出新分支
     - 根据开发目的的不同切到不同的分支
-        - 功能迭代 feature/<分支名>：基于 develop 分支创建，用于新功能开发
-        - 缺陷修复 bugfix/<分支名>：基于 main 分支创建，bugfix
-        - 预发布 release/<分支名>：基于 develop 分支创建，在此分支上测试
-    - 每次发布测试只能从功能分支/缺陷修复分支合并到 develop，然后从 develop 合并到 release 分支
-    - 当 release 完成之后，将 release 的代码合并到 main 和 develop 分支
+        - 功能迭代 feature/<分支名>：基于 main 分支创建，用于新功能开发
+        - 缺陷修复 bugfix/<分支名>：基于 main 分支创建，修复线上 bug
+        - 预发布 release/<分支名>：基于 main 分支创建，所有开发测试完毕需要发布的 feature 都先合并到此分支
+    - 每次发布测试只能从功能分支/缺陷修复分支合并到相应的测试环境分支，比如 develop，qa 等
+    - 功能的 bug 在对应的 feature 分支修改，再合并到相应测试分支
+    - 当 release 完成之后，将 release 的代码合并到 main 分支
     - 使用命令`git flow <subcommand>`，或者使用工具(推荐 sourcetree)
 2. [commitizen](https://github.com/commitizen/cz-cli) ：界面化的 commit message
 
@@ -140,13 +141,13 @@
 > 示例
 
 1. 创建项目文件，在项目文件中执行`git init`，初始化 git
-2. `git checkout -b develop`，创建并切到 develop 分支
-3. 功能迭代切到 develop 分支上`git flow feature start <分支名>`，bugfix 在 main 分支上`git flow bugfix start <分支名>`
+2. `git checkout -b <测试环境分支名>`，创建测试环境分支，比如 develop，qa 等
+3. 功能迭代切到 main 分支上`git flow feature start <分支名>`，bugfix 在 main 分支上`git flow bugfix start <分支名>`
 4. `npm run commit`提交代码，选择相关 type，并输入描述信息
-5. 当完成所有功能开发，或者 bugfix 之后，通过`git rebase -i`，在 vim 中将除第一个`pick`之外的 commit 都改成`squash`
-6. 将功能分支合并到 develop 分支，`git flow release start <分支名>`创建 release 分支
-7. 将 bugfix 分支合并到 release 分支
-8. 在 release 分支上测试，当完成后将 release 合并到 main 和 develop 分支
+5. 当完成所有功能测试开发，或者 bugfix 之后，通过`git rebase -i`，在 vim 中将除第一个`pick`之外的 commit 都改成`squash`
+6. 将功能分支/bugfix 分支合并到相应测试环境分支，然后创建 release 分支 `git flow release start <分支名>`
+7. 在测试环境分支上测试完成之后，将功能分支/bugfix 分支合并到即将发布的 release 分支
+8. 完成后将 release 合并到 main 分支
 9. `npm run release`为本次发布生成 CHANGELOG，更新版本号，以及打 tag
 
 > 基于 husky+prettier+pretty-quick/lint-staged+eslint 的代码规范
