@@ -244,7 +244,7 @@
     # 添加配置文件.lintstagedrc
     {
       "**/*.js?(x)": ["npm run eslint-fix", "prettier --write"],
-      "**/*.ts?(x)": ["prettier --write"]
+      "**/.{ts,tsx,css,md}": ["prettier --write"]
     }
    
     # 将lint-staged添加到husky
