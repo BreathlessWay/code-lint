@@ -193,7 +193,57 @@
 
     - 每次 commit 时会按照配置规则对代码自动格式化
 
-2. [lint-staged](https://github.com/okonet/lint-staged)
-    -
-
-3. [eslint](http://eslint.cn/)
+2. [eslint](http://eslint.cn/)
+    - eslint不光是对代码格式的检查，还是对 [代码规范](http://eslint.cn/docs/rules/) 的检查，比如声明但是未被使用的变量等
+    - 安装使用
+    ```
+    # 安装eslint
+    npm install eslint --save-dev
+   
+    # 添加配置文件.eslintrc
+    执行 npx eslint --init 选择相关熟悉生成配置文件
+    {
+     "env": {
+       "browser": true,
+       "es6": true
+     },
+      "extends": "eslint:recommended",
+     "rules": {
+       // 自定义规则
+       // 声明未使用变量时抛错
+       no-unused-vars: ["error", "always"],
+       // 关闭不能使用console的规则
+       no-console: "off",
+       // 使用debugger时只发出警告
+       no-debugger: "warn"
+       ...
+     },
+     "globals":{
+       // 全局变量，比如wx
+       wx: true
+       ...
+     }
+    }
+    
+    # 如果有其他需要可以自行安装相关插件，比如配合prettier
+    npm i eslint-config-prettier -D // 安装插件
+    "extends": ["eslint:recommended", "prettier"] // 在.eslintrc中添加prettier
+   
+    # 在package.json中添加命令
+    "eslint": "eslint -c ./js-eslint.json src --ext .js" // 指定对src目录下扩展名为js的文件使用js-eslint.json规则
+    "eslint-fix": "eslint --fix src --cache --color" // 对src下的文件进行fix，并且缓存修改的文件加快eslint执行
+    ```
+3. [lint-staged](https://github.com/okonet/lint-staged)
+    - 当要对不同类型的文件执行不同的格式化操作时，除了依赖ignore文件之外还可以使用lint-staged
+    - 当在 commit 之前要执行多个格式化操作，也可以用lint-staged
+    - 比如对ts文件只执行prettier，对js文件执行eslint再prettier
+    ```
+    # 安装lint-staged
+    npm i lint-staged -D
+   
+    # 添加配置文件.lintstagedrc
+    {
+      "**/*.js?(x)": ["npm run eslint-fix", "prettier --write"],
+      "**/*.ts?(x)": ["prettier --write"]
+    }
+    ```
