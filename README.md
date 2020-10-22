@@ -246,4 +246,19 @@
       "**/*.js?(x)": ["npm run eslint-fix", "prettier --write"],
       "**/*.ts?(x)": ["prettier --write"]
     }
+   
+    # 将lint-staged添加到husky
+    {
+        "hooks": {
+            "pre-commit": "lint-staged"
+             ...
+        }
+    }
+    
+    # 执行 npx mrm lint-staged 可以直接自动添加依赖，并生成配置
     ```
+    - 如此在每次 commit 的时候都会执行lint-staged来格式化校验代码，保证代码规范了
+    
+# 总结
+
+以上就是对于开发中如何规范项目开发流程，以及如何保证代码规范的一个简单介绍
