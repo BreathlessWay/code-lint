@@ -1,6 +1,6 @@
 {
-    "name": "v-t",
-    "version": "1.2.0",
+    "name": "code-lint",
+    "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -10,15 +10,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/BreathlessWay/v-t.git"
+        "url": "git+https://github.com/BreathlessWay/code-lint.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/BreathlessWay/v-t/issues"
+        "url": "https://github.com/BreathlessWay/code-lint/issues"
     },
-    "homepage": "https://github.com/BreathlessWay/v-t#readme",
+    "homepage": "https://github.com/BreathlessWay/code-lint#readme",
     "devDependencies": {
         "@commitlint/cli": "^11.0.0",
         "@commitlint/config-conventional": "^11.0.0",

@@ -1,4 +1,4 @@
 {
-  "**/*.js?(x)": ["npm run eslint-fix", "prettier --write"],
+  "**/*.js?(x)": [],
   "**/*.ts?(x)": ["prettier --write"]
 }

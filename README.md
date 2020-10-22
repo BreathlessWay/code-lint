@@ -154,7 +154,7 @@
 > 基于 husky+prettier+pretty-quick/lint-staged+eslint 的代码规范
 
 1. [prettier](https://prettier.io/docs/en/index.html)
-
+    - prettier是对于代码格式的约束，比如单双引号，缩进，分号，空格，换行等等
     - 安装使用
 
     ```
@@ -182,11 +182,18 @@
     npm install --save-dev pretty-quick
 
     # 添加配置到husky
-    "pre-commit": "pretty-quick --staged",
+    {
+        "hooks": {
+            ...
+            "pre-commit": "pretty-quick --staged",
+            ...
+        }
+    }
     ```
 
     - 每次 commit 时会按照配置规则对代码自动格式化
 
 2. [lint-staged](https://github.com/okonet/lint-staged)
+    -
 
 3. [eslint](http://eslint.cn/)
