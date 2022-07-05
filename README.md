@@ -1,5 +1,7 @@
 # 规范化开发流程
 
+[原文地址](https://github.com/BreathlessWay/code-lint/blob/main/README.md)
+
 > 基于 git flow+commitizen+husky+commitlint+standard-version+git rebase 的分支及发布管理
 
 1. 基于 git flow，适应实际开发的工作流
@@ -39,6 +41,7 @@
     - 安装使用
 
     ```
+    husky（6.0.0）已经做了破坏性的变更，此设置方式已经失效了。
     # 安装husky
     npm install husky --save-dev
 
@@ -49,6 +52,36 @@
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     }
+    ```
+
+    ```
+    新的配置方式
+    # 安装husky
+    npm install husky --save-dev
+
+    # 添加执行脚本，prepare脚本会在npm install（不带参数）之后自动执行。也就是说当我们执行npm install安装完项目依赖后会执行 husky install命令，该命令会创建.husky/目录并指定该目录为git hooks所在的目录。
+    {
+        "scripts": {
+          "prepare": "husky install"
+        }
+    }
+
+    # 添加git hook
+    npx husky add .husky/pre-commit "npm run lint"
+    // 在.husky目录下就新增了名为pre-commit的shell脚本
+    #!/bin/sh
+    . "$(dirname "$0")/_/husky.sh"
+
+    npm run lint
+
+    // 验证commit message需要在.husky目录下添加名为commit-msg的shell脚本，新版husky中$HUSKY_GIT_PARAMS这个变量不再使用了，取而代之的是$1
+    #!/bin/sh
+    . "$(dirname "$0")/_/husky.sh"
+
+    npx --no-install commitlint --edit "$1"
+
+    # 如果报错husky不是可执行脚本，需要添加执行权限
+    chmod a+x .husky/*
     ```
 
     - 可以在 commit 之前对 commit message 校验，对代码进行校验等
@@ -244,7 +277,7 @@
     # 添加配置文件.lintstagedrc
     {
       "**/*.js?(x)": ["npm run eslint-fix", "prettier --write"],
-      "**/.{ts,tsx,css,md}": ["prettier --write"]
+      "**/*.{ts,tsx,css,md}": ["prettier --write"]
     }
    
     # 将lint-staged添加到husky
